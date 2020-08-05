@@ -26,10 +26,10 @@ workbox.clientsClaim();
  */
 self.__precacheManifest = [
   {
-    "url": "webpack-runtime-0675a3e876944e57b36e.js"
+    "url": "webpack-runtime-f679eb18bcc5a9c53d80.js"
   },
   {
-    "url": "styles.4be55cf7823978cc7f82.css"
+    "url": "styles.dc69beede5c955e6e97a.css"
   },
   {
     "url": "styles-c2fe8482057191dca484.js"
@@ -38,22 +38,14 @@ self.__precacheManifest = [
     "url": "framework-85aff51d15c28c7fbe5f.js"
   },
   {
-    "url": "app-d58c66fad43c1dec8c73.js"
+    "url": "app-68e6f60f502711d808e9.js"
   },
   {
     "url": "component---node-modules-gatsby-plugin-offline-app-shell-js-f3d0a21fe8149f33caf4.js"
   },
   {
     "url": "offline-plugin-app-shell-fallback/index.html",
-    "revision": "74ce93baa7fe53f041f4aec7b8a0315c"
-  },
-  {
-    "url": "page-data/offline-plugin-app-shell-fallback/page-data.json",
-    "revision": "c7047792c6f91b88e0d9abc0cd819e92"
-  },
-  {
-    "url": "page-data/app-data.json",
-    "revision": "3b257a9d36b16a64ad105164b46b0805"
+    "revision": "665ccf65b4bbd713c5ed474a5ce03233"
   },
   {
     "url": "polyfill-db2f4e55589df5b85311.js"
@@ -64,7 +56,7 @@ self.__precacheManifest = [
   },
   {
     "url": "manifest.webmanifest",
-    "revision": "e2d92c3f87eb7049397f73d5ce1f5ead"
+    "revision": "864533f4625aac4eabab42ea131e0ae8"
   }
 ].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
@@ -83,12 +75,12 @@ const { NavigationRoute } = workbox.routing
 
 const navigationRoute = new NavigationRoute(async ({ event }) => {
   let { pathname } = new URL(event.request.url)
-  pathname = pathname.replace(new RegExp(`^/probioticskin.care`), ``)
+  pathname = pathname.replace(new RegExp(`^`), ``)
 
   // Check for resources + the app bundle
   // The latter may not exist if the SW is updating to a new version
   const resources = await idbKeyval.get(`resources:${pathname}`)
-  if (!resources || !(await caches.match(`/probioticskin.care/app-d58c66fad43c1dec8c73.js`))) {
+  if (!resources || !(await caches.match(`/app-68e6f60f502711d808e9.js`))) {
     return await fetch(event.request)
   }
 
@@ -101,7 +93,7 @@ const navigationRoute = new NavigationRoute(async ({ event }) => {
     }
   }
 
-  const offlineShell = `/probioticskin.care/offline-plugin-app-shell-fallback/index.html`
+  const offlineShell = `/offline-plugin-app-shell-fallback/index.html`
   return await caches.match(offlineShell)
 })
 
